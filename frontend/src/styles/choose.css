@@ -1,0 +1,20 @@
+.choose-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choose-card {
+  text-align: center;
+  width: 300px;
+}
+
+.choose-card h1 {
+  margin-bottom: 10px;
+}
+
+.choose-card p {
+  margin-bottom: 20px;
+  color: #cbd5f5;
+}

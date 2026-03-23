@@ -27,5 +27,18 @@
 }
 
 .auth-box button {
-  margin-top: 15px;
+  margin-top: 25px;
+}
+.auth-box input {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.auth-box input:focus {
+  box-shadow: 0 0 10px rgba(99,102,241,0.7);
 }

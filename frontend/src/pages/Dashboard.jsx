@@ -72,13 +72,13 @@ function Dashboard() {
         />
 
         {/* Button */}
-        <button
-          onClick={handleAnalyze}
-          disabled={loading}
-          className="w-full mt-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-105 transition transform py-3 rounded-xl text-lg font-semibold shadow-lg"
-        >
-          {loading ? "🔄 Analyzing..." : "Analyze Resume"}
-        </button>
+       {loading ? (
+  <div className="loader"></div>
+) : (
+  <button className="btn" onClick={handleAnalyze}>
+    Analyze Resume 🚀
+  </button>
+)}
       </div>
 
       {/* RESULT SECTION */}
