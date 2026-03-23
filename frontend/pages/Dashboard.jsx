@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import '../styles/dashboard.css'
+import '../styles/global.css'
 
 function Dashboard() {
   const [file, setFile] = useState(null);
@@ -35,7 +37,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-black to-gray-900 text-white p-6">
+    <div className="card fade-in min-h-screen bg-gradient-to-br from-purple-900 via-black to-gray-900 text-white p-6">
 
       {/* Title */}
       <h1 className="text-4xl font-bold text-center mb-10 tracking-wide">

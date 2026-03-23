@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import '../styles/global.css'
+import '../styles/home.css'
 
 function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-black text-white">
+    <div className="home fade-in h-screen flex flex-col justify-center items-center bg-black text-white">
       <h1 className="text-4xl font-bold mb-4">
         AI Resume Analyzer 🚀
       </h1>
