@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Navbar from "./components/Navbar";
@@ -7,22 +7,19 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [page, setPage] = useState("login");
+  const [showRegister, setShowRegister] = useState(false);
   const [result, setResult] = useState(null);
 
-  useEffect(() => {
-    const name = localStorage.getItem("name");
-    if (name) setUser(name);
-  }, []);
-
+  // 👉 Login/Register screen
   if (!user) {
-    return page === "login" ? (
-      <Login setUser={setUser} goRegister={() => setPage("register")} />
+    return showRegister ? (
+      <Register setShowRegister={setShowRegister} />
     ) : (
-      <Register goLogin={() => setPage("login")} />
+      <Login setUser={setUser} setShowRegister={setShowRegister} />
     );
   }
 
+  // 👉 After login
   return (
     <>
       <Navbar setUser={setUser} />

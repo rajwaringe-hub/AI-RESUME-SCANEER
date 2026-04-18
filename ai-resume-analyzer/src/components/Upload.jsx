@@ -1,45 +1,45 @@
 import { useState } from "react";
 
 export default function Upload({ setResult }) {
-  const [file, setFile] = useState(null);
   const [jd, setJd] = useState("");
+  const [file, setFile] = useState(null);
 
-  const handleAnalyze = () => {
-    console.log("clicked");
-
-    if (!file || !jd) {
-      alert("Please upload resume and enter job description");
+  const analyze = () => {
+    if (!file) {
+      alert("Upload resume first");
       return;
     }
 
-    const keywords = ["html", "css", "javascript", "react", "python"];
+    if (!jd.trim()) {
+      alert("Enter job description");
+      return;
+    }
 
-    const found = keywords.filter(k =>
-      jd.toLowerCase().includes(k)
-    );
+    const keywords = ["html", "css", "javascript", "react"];
+    const text = jd.toLowerCase();
 
-    const missing = keywords.filter(k =>
-      !jd.toLowerCase().includes(k)
-    );
+    const found = keywords.filter(k => text.includes(k));
+    const missing = keywords.filter(k => !text.includes(k));
 
-    const score = Math.min(found.length * 20, 100);
+    const score = Math.floor((found.length / keywords.length) * 100);
 
     setResult({ score, found, missing });
   };
 
   return (
     <div className="container" style={{ marginTop: "50px" }}>
-      <div className="card" style={{ width: "350px" }}>
+      <div className="card">
         <h2>Upload Resume</h2>
 
-        <input type="file" onChange={(e)=>setFile(e.target.files[0])} />
+        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
         <textarea
-          placeholder="Job Description"
-          onChange={(e)=>setJd(e.target.value)}
-        ></textarea>
+          placeholder="Paste Job Description"
+          value={jd}
+          onChange={(e) => setJd(e.target.value)}
+        />
 
-        <button onClick={handleAnalyze}>Analyze</button>
+        <button onClick={analyze}>Analyze</button>
       </div>
     </div>
   );

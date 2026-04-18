@@ -1,28 +1,21 @@
-export default function Login({ setUser, goRegister }) {
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const saved = JSON.parse(localStorage.getItem("user"));
-
-    if (saved) {
-      localStorage.setItem("name", saved.name);
-      setUser(saved.name);
-    }
-  };
-
+export default function Login({ setUser, setShowRegister }) {
   return (
     <div className="container" style={{ height: "100vh" }}>
-      <form className="card" style={{ width: "300px" }}>
-        <h2>Login</h2>
+      <div className="card">
+        <h2 style={{ textAlign: "center" }}>Login</h2>
 
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input placeholder="Email" />
+        <input placeholder="Password" type="password" />
 
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={() => setUser("user")}>Login</button>
 
-        <p onClick={goRegister} style={{ cursor: "pointer" }}>
-          Register here
+        <p
+          style={{ marginTop: "10px", textAlign: "center", cursor: "pointer" }}
+          onClick={() => setShowRegister(true)}
+        >
+          👉 Create New Account
         </p>
-      </form>
+      </div>
     </div>
   );
 }
