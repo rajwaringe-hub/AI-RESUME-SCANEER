@@ -1,57 +1,28 @@
-import { useState } from "react";
-
 export default function Login({ setUser, goRegister }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const handleLogin = (e) => {
     e.preventDefault();
+    const saved = JSON.parse(localStorage.getItem("user"));
 
-    const savedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (
-      savedUser &&
-      savedUser.email === email &&
-      savedUser.password === password
-    ) {
-      localStorage.setItem("name", savedUser.name);
-      setUser(savedUser.name);
-    } else {
-      alert("Invalid email or password");
+    if (saved) {
+      localStorage.setItem("name", saved.name);
+      setUser(saved.name);
     }
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h2>Login</h2>
+    <div className="container" style={{ height: "100vh" }}>
+      <form className="card" style={{ width: "300px" }}>
+        <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
-        <div>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
 
-        <div style={{ marginTop: "10px" }}>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+        <button onClick={handleLogin}>Login</button>
 
-        <button style={{ marginTop: "15px" }}>Login</button>
+        <p onClick={goRegister} style={{ cursor: "pointer" }}>
+          Register here
+        </p>
       </form>
-
-      <p style={{ marginTop: "10px", cursor: "pointer" }} onClick={goRegister}>
-        Don't have an account? Register
-      </p>
     </div>
   );
 }
